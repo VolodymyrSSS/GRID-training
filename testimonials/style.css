@@ -142,16 +142,14 @@ h3 {
   border: 2px solid #a775f1;
 }
 
-/* .grid-col-span-2 {
-  grid-column: span 2;
-} але перенесем це в media */
-
 /* components */
 .testimonial-grid {
   display: grid;
   gap: 1.5rem;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr; aбо так
-    grid-template-columns: repeat(4, 1fr); але перенесем це в media*/
+  grid-auto-columns: 1fr;
+  grid-template-areas:
+    'one-tstimonial' 'two-testimonial' 'three-testimonial'
+    'four-testimonial' 'five-testimonial';
 
   padding-block: 2rem;
   width: min(95%, 70rem);
@@ -165,23 +163,37 @@ h3 {
   box-shadow: 2.5rem 3.75rem 3rem -3rem hsl(var(--clr-secondary-400) / 0.25);
 }
 
-/*.testimonial:last-child {
-  grid-column-start: 4;
-  grid-row-start: 1;
-  grid-row-end: 3; або так grid-row-end: span 2;
-  grid-row: 1 / 3; або так grid-row: 1 / span 2;
-} але перенесем це в media*/
+.testimonial:nth-child(1) {
+  grid-area: one-tstimonial;
+}
+.testimonial:nth-child(2) {
+  grid-area: two-testimonial;
+}
+.testimonial:nth-child(3) {
+  grid-area: three-testimonial;
+}
+.testimonial:nth-child(4) {
+  grid-area: four-testimonial;
+}
+.testimonial:nth-child(5) {
+  grid-area: five-testimonial;
+}
+
+@media (min-width: 30em) {
+  .testimonial-grid {
+    grid-template-areas:
+      'one-tstimonial one-tstimonial'
+      'two-testimonial five-testimonial'
+      'three-testimonial five-testimonial'
+      'four-testimonial four-testimonial';
+  }
+}
 
 @media (min-width: 50em) {
-  .grid-col-span-2 {
-    grid-column: span 2;
-  }
   .testimonial-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .testimonial:last-child {
-    grid-column-start: 4;
-    grid-row: 1 / span 2;
+    grid-template-areas:
+      'one-tstimonial one-tstimonial two-testimonial five-testimonial'
+      'three-testimonial four-testimonial four-testimonial five-testimonial';
   }
 }
 
